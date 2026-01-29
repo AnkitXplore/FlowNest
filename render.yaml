@@ -1,11 +1,9 @@
 services:
-  # Frontend Service
   - type: web
     name: flownest-frontend
     env: static
     buildCommand: cd Frontend && npm install && npm run build
     publishPath: Frontend/dist
-    staticPublishPath: Frontend/dist
     routes:
       - route: /.*
         directory: Frontend/dist
@@ -15,4 +13,3 @@ services:
         value: 20
       - key: VITE_BASE_URL
         value: https://flownest-backend.onrender.com
-    autoDeploy: true

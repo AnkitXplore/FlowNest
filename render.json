@@ -1,0 +1,5 @@
+﻿{
+  "buildCommand": "./build.sh",
+  "publishPath": "Frontend/dist",
+  "env": "static"
+}
