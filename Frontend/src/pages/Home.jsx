@@ -77,7 +77,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/tasks/update/${draggableId}`,
+        `https://flownest-backend-2.onrender.com/tasks/update/${draggableId}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -94,7 +94,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/tasks/all`,
+        `https://flownest-backend-2.onrender.com/tasks/all`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -117,7 +117,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/users/logout`,
+        `https://flownest-backend-2.onrender.com/users/logout`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -139,7 +139,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/tasks/delete/${deleteTaskId}`,
+        `https://flownest-backend-2.onrender.com/tasks/delete/${deleteTaskId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Task Deleted");

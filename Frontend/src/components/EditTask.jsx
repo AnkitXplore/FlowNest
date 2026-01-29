@@ -45,7 +45,7 @@ const EditTask = ({open, setOpen, task, onTaskUpdated}) => {
     try {
       const token = localStorage.getItem("token");
        const response = await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/tasks/update/${task._id}`,
+        `https://flownest-backend-2.onrender.com/tasks/update/${task._id}`,
         { title, description, priority, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -8,7 +8,7 @@ const UserLogout = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
 
-    axios.get(`${import.meta.env.VITE_BASE_URL}/users/logout`, {
+    axios.get(`https://flownest-backend-2.onrender.com/users/logout`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

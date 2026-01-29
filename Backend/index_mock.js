@@ -34,8 +34,36 @@ app.get('/users/profile', getUserProfile);
 app.post('/users/logout', logoutUser);
 
 // Mock task routes (basic implementation)
+let tasks = []; // In-memory storage for tasks
+
 app.get('/tasks', (req, res) => {
-    res.json({ tasks: [] });
+    res.json({ tasks: tasks });
+});
+
+app.get('/tasks/all', (req, res) => {
+    res.json({ tasks: tasks });
+});
+
+app.post('/tasks/create', (req, res) => {
+    try {
+        const { title, description, priority, status } = req.body;
+        const newTask = {
+            _id: Date.now().toString(),
+            title: title || 'New Task',
+            description: description || '',
+            priority: priority || 'medium',
+            status: status || 'todo',
+            createdAt: new Date().toISOString()
+        };
+        
+        tasks.push(newTask);
+        res.status(201).json({ 
+            message: 'Task created successfully',
+            task: newTask 
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to create task' });
+    }
 });
 
 app.listen(port, ()=>{

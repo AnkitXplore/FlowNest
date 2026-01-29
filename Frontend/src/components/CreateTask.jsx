@@ -37,7 +37,7 @@ const CreateTask = ({ onTaskCreated }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/tasks/create`,
+        `https://flownest-backend-2.onrender.com/tasks/create`,
         { title, description, priority, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
