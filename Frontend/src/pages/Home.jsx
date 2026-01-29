@@ -10,6 +10,8 @@ import {
   Settings2,
   Ellipsis,
   Menu,
+  Moon,
+  Sun,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -38,9 +40,11 @@ import TaskCard from "../components/TaskCard";
 import EditTask from "../components/EditTask";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import Footer from "@/components/Footer";
+import { useTheme } from "../context/ThemeContext";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { isDarkMode, toggleTheme } = useTheme();
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openEdit, setOpenEdit] = useState(false);
@@ -208,24 +212,24 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors">
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
       `}</style>
 
-      <nav className="fixed top-0 left-0 w-full z-50 bg-white text-slate-900 border-b border-slate-200">
+      <nav className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-700 transition-colors">
         {/* TOP ROW: Brand, Desktop Search, Avatar */}
         <div className="flex items-center justify-between px-4 md:px-6 py-4">
           {/* LEFT : BRAND & MENU TOGGLE */}
           <div className="flex items-center gap-2 md:gap-4">
             {/* ✅ Menu Button Click Handler */}
             <button
-              className="md:hidden p-1 hover:bg-slate-100 rounded-md transition"
+              className="md:hidden p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <Menu size={20} className="text-slate-600" />
+              <Menu size={20} className="text-slate-600 dark:text-slate-300" />
             </button>
 
             <div className="flex items-center gap-2">
@@ -239,26 +243,39 @@ const Home = () => {
           </div>
 
           {/* CENTER : DESKTOP SEARCH (Hidden on Mobile) */}
-          <div className="hidden md:flex items-center bg-slate-100 rounded-lg px-2 border border-slate-300 focus-within:border-purple-500/60 focus-within:ring-2 focus-within:ring-purple-500/20 transition mx-4">
-            <Search size={16} className="text-slate-400 shrink-0" />
+          <div className="hidden md:flex items-center bg-slate-100 dark:bg-slate-700 rounded-lg px-2 border border-slate-300 dark:border-slate-600 focus-within:border-purple-500/60 focus-within:ring-2 focus-within:ring-purple-500/20 transition mx-4">
+            <Search size={16} className="text-slate-400 dark:text-slate-400 shrink-0" />
             <input
               type="text"
               placeholder="Search tasks..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent text-sm text-slate-700 px-2 py-2 w-40 lg:w-56 placeholder:text-slate-400 focus:outline-none"
+              className="bg-transparent text-sm text-slate-700 dark:text-slate-200 px-2 py-2 w-40 lg:w-56 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
             />
           </div>
 
           {/* RIGHT : NAV LINKS + AVATAR */}
           <div className="flex items-center gap-3 md:gap-6">
-            <button className="hidden lg:flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition">
+            <button className="hidden lg:flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition">
               <CircleCheckBig size={18} />
               Tasks
             </button>
-            <button className="hidden lg:flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition">
+            <button className="hidden lg:flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition">
               <FolderGit size={18} />
               Projects
+            </button>
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDarkMode ? (
+                <Sun size={18} className="text-yellow-500" />
+              ) : (
+                <Moon size={18} className="text-slate-600" />
+              )}
             </button>
 
             <DropdownMenu>
@@ -297,27 +314,27 @@ const Home = () => {
 
         {/* ✅ MOBILE MENU (Visible only when isMobileMenuOpen is true) */}
         {isMobileMenuOpen && (
-          <div className="md:hidden px-4 pb-4 border-t border-slate-100 bg-white">
+          <div className="md:hidden px-4 pb-4 border-t border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div className="flex flex-col gap-4 mt-4">
               {/* Mobile Search Bar */}
-              <div className="flex items-center bg-slate-100 rounded-lg px-3 border border-slate-300 focus-within:border-purple-500/60 focus-within:ring-2 focus-within:ring-purple-500/20 transition">
-                <Search size={18} className="text-slate-400 shrink-0" />
+              <div className="flex items-center bg-slate-100 dark:bg-slate-700 rounded-lg px-3 border border-slate-300 dark:border-slate-600 focus-within:border-purple-500/60 focus-within:ring-2 focus-within:ring-purple-500/20 transition">
+                <Search size={18} className="text-slate-400 dark:text-slate-400 shrink-0" />
                 <input
                   type="text"
                   placeholder="Search tasks..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-transparent text-sm text-slate-700 px-2 py-3 w-full placeholder:text-slate-400 focus:outline-none"
+                  className="bg-transparent text-sm text-slate-700 dark:text-slate-200 px-2 py-3 w-full placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
                 />
               </div>
 
               {/* Mobile Links (Jo desktop par hidden the) */}
               <div className="flex flex-col gap-2">
-                <button className="flex items-center gap-3 p-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg transition">
+                <button className="flex items-center gap-3 p-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition">
                   <CircleCheckBig size={18} />
                   Tasks
                 </button>
-                <button className="flex items-center gap-3 p-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg transition">
+                <button className="flex items-center gap-3 p-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition">
                   <FolderGit size={18} />
                   Projects
                 </button>
@@ -331,19 +348,19 @@ const Home = () => {
         <section>
           <div className="px-4 md:px-6 py-4">
             <div className="box-01 flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-4">
-              <div className="title text-2xl md:text-3xl font-bold ">Tasks</div>
+              <div className="title text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100">Tasks</div>
               <div className="flex -space-x-3 self-start sm:self-auto">
                 {users.slice(0, 3).map((user, index) => (
                   <Avatar
                     key={index}
-                    className="h-9 w-9 md:h-10 md:w-10 border-2 border-white"
+                    className="h-9 w-9 md:h-10 md:w-10 border-2 border-white dark:border-slate-800"
                   >
                     <AvatarImage src={user.img} />
                     <AvatarFallback>{user.name[0]}</AvatarFallback>
                   </Avatar>
                 ))}
 
-                <Avatar className="h-9 w-9 md:h-10 md:w-10 border-2 border-white bg-muted">
+                <Avatar className="h-9 w-9 md:h-10 md:w-10 border-2 border-white dark:border-slate-800 bg-muted">
                   <AvatarFallback>+1</AvatarFallback>
                 </Avatar>
               </div>
@@ -354,19 +371,19 @@ const Home = () => {
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 <div className="flex gap-2 md:gap-6 items-center text-sm font-medium whitespace-nowrap min-w-max">
-                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer">
+                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer text-slate-600 dark:text-slate-300">
                     Overview
                   </h3>
-                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer">
+                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer text-slate-600 dark:text-slate-300">
                     Board
                   </h3>
-                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer">
+                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer text-slate-600 dark:text-slate-300">
                     Timeline
                   </h3>
-                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer">
+                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer text-slate-600 dark:text-slate-300">
                     Activites
                   </h3>
-                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer">
+                  <h3 className="hover:bg-purple-400 px-3 py-1 rounded-lg hover:text-white active:bg-purple-400 transition cursor-pointer text-slate-600 dark:text-slate-300">
                     Files
                   </h3>
                 </div>
@@ -386,7 +403,7 @@ const Home = () => {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="btn px-3 py-2 bg-slate-100 rounded-md text-slate-500 flex justify-center gap-2 items-center hover:bg-slate-200 transition w-full sm:w-auto">
+                    <button className="btn px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-md text-slate-500 dark:text-slate-300 flex justify-center gap-2 items-center hover:bg-slate-200 dark:hover:bg-slate-600 transition w-full sm:w-auto">
                       <Settings2 size={16} />{" "}
                       <span className="hidden sm:inline">Customise</span>{" "}
                       <span className="sm:hidden">Sort</span>
@@ -410,7 +427,7 @@ const Home = () => {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="btn px-3 py-2 bg-slate-100 rounded-md text-slate-500 flex justify-center gap-2 items-center hover:bg-slate-200 transition w-full sm:w-auto">
+                    <button className="btn px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-md text-slate-500 dark:text-slate-300 flex justify-center gap-2 items-center hover:bg-slate-200 dark:hover:bg-slate-600 transition w-full sm:w-auto">
                       <Funnel size={16} /> Filter
                     </button>
                   </DropdownMenuTrigger>
@@ -437,7 +454,7 @@ const Home = () => {
         {/* --- KANBAN BOARD SECTION --- */}
         <main className="p-4 md:p-6 overflow-x-auto">
           {loading ? (
-            <p className="text-slate-500">Loading tasks...</p>
+            <p className="text-slate-500 dark:text-slate-400">Loading tasks...</p>
           ) : (
             <DragDropContext onDragEnd={onDragEnd}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

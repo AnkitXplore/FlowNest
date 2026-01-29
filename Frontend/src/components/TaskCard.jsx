@@ -19,9 +19,9 @@ import {
 
 const TaskCard = ({ task, onEdit, onDelete }) => {
   const priorityColors = {
-    low: "bg-blue-100 text-blue-700",
-    medium: "bg-yellow-100 text-yellow-700",
-    high: "bg-red-100 text-red-700",
+    low: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300",
+    medium: "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300",
+    high: "bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300",
   };
 
   const statusProgress = {
@@ -39,17 +39,17 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
     });
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border hover:shadow-md transition">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
       
       {/* Header */}
       <div className="flex justify-between items-start mb-3">
-        <h3 className="font-semibold text-slate-800 text-sm pr-2">
+        <h3 className="font-semibold text-slate-800 dark:text-slate-200 text-sm pr-2">
           {task.title}
         </h3>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="text-slate-400 hover:text-slate-700">
+            <button className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-300">
               <MoreVertical size={16} />
             </button>
           </DropdownMenuTrigger>
@@ -82,13 +82,13 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
       </span>
 
       {/* Description */}
-      <p className="text-slate-500 text-sm mb-4 line-clamp-2">
+      <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 line-clamp-2">
         {task.description || "No description"}
       </p>
 
       {/* Progress */}
       <div className="mb-4">
-        <div className="flex justify-between text-xs text-slate-600 mb-1">
+        <div className="flex justify-between text-xs text-slate-600 dark:text-slate-400 mb-1">
           <span>Progress</span>
           <span>{progress}%</span>
         </div>
@@ -96,7 +96,7 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center pt-3 border-t text-xs text-slate-400">
+      <div className="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-slate-700 text-xs text-slate-400 dark:text-slate-500">
         <div className="flex items-center gap-3">
           <Clock size={14} />
           {formatDate(task.createdAt)}
@@ -104,11 +104,12 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
           <Paperclip size={14} />0
         </div>
 
-        <Avatar className="h-7 w-7 border">
+        <Avatar className="h-7 w-7 border border-slate-200 dark:border-slate-700">
           <AvatarImage
             src={`https://api.dicebear.com/7.x/initials/svg?seed=${task.user}`}
+            alt="User"
           />
-          <AvatarFallback>{task.title?.[0]}</AvatarFallback>
+          <AvatarFallback>U</AvatarFallback>
         </Avatar>
       </div>
     </div>

@@ -6,6 +6,7 @@ import UserSignUp from "./pages/UserSignUp";
 import StartedPage from "./pages/StartedPage";
 import { UserDataContext } from "./context/UserContext";
 import UserContext from "./context/UserContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import UserProtectWraper from "./pages/UserProtectWraper";
 import UserLogout from "./pages/UserLogout";
 import { Toaster } from "react-hot-toast";
@@ -14,39 +15,41 @@ import NotFound from "./components/NotFound";
 
 const App = () => {
   return (
-    <UserContext>
-      <Toaster position="top-right" reverseOrder={false} />
-      <Routes>
-        <Route path="/" element={<StartedPage />} />
-        <Route
-          path="/home"
-          element={
-            <UserProtectWraper>
-              <Home />
-            </UserProtectWraper>
-          }
-        />
-        <Route path="/login" element={<UserLogin />} />
-        <Route path="/signup" element={<UserSignUp />} />
-        <Route
-          path="/profile"
-          element={
-            <UserProtectWraper>
-              <UserProfile />
-            </UserProtectWraper>
-          }
-        />
-        <Route
-          path="/user/logout"
-          element={
-            <UserProtectWraper>
-              <UserLogout />
-            </UserProtectWraper>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </UserContext>
+    <ThemeProvider>
+      <UserContext>
+        <Toaster position="top-right" reverseOrder={false} />
+        <Routes>
+          <Route path="/" element={<StartedPage />} />
+          <Route
+            path="/home"
+            element={
+              <UserProtectWraper>
+                <Home />
+              </UserProtectWraper>
+            }
+          />
+          <Route path="/login" element={<UserLogin />} />
+          <Route path="/signup" element={<UserSignUp />} />
+          <Route
+            path="/profile"
+            element={
+              <UserProtectWraper>
+                <UserProfile />
+              </UserProtectWraper>
+            }
+          />
+          <Route
+            path="/user/logout"
+            element={
+              <UserProtectWraper>
+                <UserLogout />
+              </UserProtectWraper>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </UserContext>
+    </ThemeProvider>
   );
 };
 
