@@ -2,12 +2,11 @@ services:
   - type: web
     name: flownest-frontend
     env: static
-    buildCommand: cd Frontend && npm install && npm run build
+    buildCommand: ./build.sh
     publishPath: Frontend/dist
     routes:
-      - route: /.*
-        directory: Frontend/dist
-        status: 200
+      - source: /*
+        destination: /index.html
     envVars:
       - key: NODE_VERSION
         value: 20
