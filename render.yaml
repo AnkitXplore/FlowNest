@@ -1,4 +1,5 @@
 services:
+  # Frontend Service
   - type: web
     name: flownest-frontend
     env: static
@@ -12,3 +13,19 @@ services:
         value: 20
       - key: VITE_BASE_URL
         value: https://flownest-backend.onrender.com
+
+  # Backend Service
+  - type: web
+    name: flownest-backend
+    env: node
+    buildCommand: cd Backend && npm install
+    startCommand: cd Backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 4000
+      - key: MONGODB_URI
+        value: mongodb+srv://flownest:flownest123@cluster0.mongodb.net/flownest?retryWrites=true&w=majority
+      - key: JWT_SECRET
+        value: flownest-jwt-secret-key-2024

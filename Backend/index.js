@@ -1,9 +1,9 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: '.env.local' }) 
+dotenv.config() 
 const cors = require('cors')
 const express = require('express')
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 const http = require('http')
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user.routes.js')
@@ -30,6 +30,7 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://127.0.0.1:53304",
+        "https://flownest-frontend.onrender.com",
         "https://taskpilot-bice.vercel.app"
     ],
     credentials: true   
@@ -39,12 +40,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 
 app.get('/', (req, res) => {
-    res.send('Working')
+    res.send('FlowNest Backend is Working!')
 })
 
 app.use('/users', userRoutes)
 app.use('/tasks', taskRoutes)
 app.listen(port, ()=>{
-    console.log(`Server are listing on this port ${port}`);
+    console.log(`Server is listening on port ${port}`);
     
 })
