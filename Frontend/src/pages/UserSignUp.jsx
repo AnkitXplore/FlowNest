@@ -160,7 +160,7 @@ const UserSignUp = () => {
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="John"
-                      className="flownest-input h-12 bg-white/50 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20"
+                      className="h-12 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl text-slate-900 placeholder:text-slate-400"
                       required
                     />
                   </div>
@@ -174,7 +174,7 @@ const UserSignUp = () => {
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder="Doe"
-                      className="flownest-input h-12 bg-white/50 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20"
+                      className="h-12 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl text-slate-900 placeholder:text-slate-400"
                       required
                     />
                   </div>
@@ -193,7 +193,7 @@ const UserSignUp = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="john.doe@example.com"
-                      className="flownest-input h-12 pl-10 bg-white/50 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20"
+                      className="h-12 pl-10 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl text-slate-900 placeholder:text-slate-400"
                       required
                     />
                   </div>
@@ -212,7 +212,7 @@ const UserSignUp = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Create a strong password"
-                      className="flownest-input h-12 pl-10 bg-white/50 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20"
+                      className="h-12 pl-10 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl text-slate-900 placeholder:text-slate-400"
                       required
                       minLength={6}
                     />
