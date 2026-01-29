@@ -1,0 +1,28 @@
+services:
+  # Frontend Service
+  - type: web
+    name: flownest-frontend
+    env: static
+    buildCommand: cd Frontend && npm install && npm run build
+    publishPath: Frontend/dist
+    staticPublishPath: Frontend/dist
+    routes:
+      - route: /.*
+        directory: Frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+    autoDeploy: true
+    
+  # Backend Service (if needed)
+  - type: web
+    name: flownest-backend
+    env: node
+    buildCommand: cd Backend && npm install
+    startCommand: cd Backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 4000
+    autoDeploy: true
