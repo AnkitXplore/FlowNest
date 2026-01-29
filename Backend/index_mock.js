@@ -14,6 +14,7 @@ app.use(cors({
         "http://127.0.0.1:53304",
         "https://flownest-frontend.onrender.com",
         "https://flownest-backend-2.onrender.com",
+        "https://flownest-10.onrender.com",
         "https://taskpilot-bice.vercel.app"
     ],
     credentials: true   
