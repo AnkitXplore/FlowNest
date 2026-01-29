@@ -106,7 +106,7 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
 
         <Avatar className="h-7 w-7 border border-slate-200 dark:border-slate-700">
           <AvatarImage
-            src={`https://api.dicebear.com/7.x/initials/svg?seed=${task.user}`}
+            src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${task.user || 'TaskUser'}`}
             alt="User"
           />
           <AvatarFallback>U</AvatarFallback>

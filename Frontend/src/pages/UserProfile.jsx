@@ -115,7 +115,7 @@ const UserProfile = () => {
               
               {/* Avatar */}
               <Avatar className="h-24 w-24 ring-4 ring-indigo-200 shrink-0">
-                <AvatarImage src={user.avatar || "https://i.pravatar.cc/150"} />
+                <AvatarImage src={user.avatar || "https://api.dicebear.com/7.x/avataaars/svg?seed=ProfileUser"} />
                 <AvatarFallback>
                   {user.fullname?.firstname?.charAt(0)}
                 </AvatarFallback>

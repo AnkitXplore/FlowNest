@@ -32,7 +32,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { User, LogOut, Rocket } from "lucide-react";
+import { User, LogOut, Zap } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CreateTask from "../components/CreateTask";
@@ -205,10 +205,10 @@ const Home = () => {
   );
   const completedTasks = filteredTasks.filter((t) => t.status === "completed");
   const users = [
-    { name: "Amar", img: "https://i.pravatar.cc/150?img=1" },
-    { name: "Rahul", img: "https://i.pravatar.cc/150?img=2" },
-    { name: "Neha", img: "https://i.pravatar.cc/150?img=3" },
-    { name: "Karan", img: "https://i.pravatar.cc/150?img=4" },
+    { name: "Alex Chen", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" },
+    { name: "Sarah Miller", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" },
+    { name: "David Kumar", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=David" },
+    { name: "Emma Wilson", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma" },
   ];
 
   return (
@@ -234,7 +234,7 @@ const Home = () => {
 
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm cursor-pointer">
-                <Rocket className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <Zap className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </div>
               <h1 className="text-lg font-bold tracking-wider hidden sm:block">
                 <Link to="/home">FlowNest</Link>
@@ -283,10 +283,10 @@ const Home = () => {
                 <button className="focus:outline-none">
                   <Avatar className="md:h-9 md:w-9 h-8 w-8 cursor-pointer ring-2 ring-transparent hover:ring-purple-500 transition">
                     <AvatarImage
-                      src="https://github.com/shadcn.png"
+                      src="https://api.dicebear.com/7.x/avataaars/svg?seed=FlowNestUser"
                       alt="User"
                     />
-                    <AvatarFallback>AJ</AvatarFallback>
+                    <AvatarFallback>FN</AvatarFallback>
                   </Avatar>
                 </button>
               </DropdownMenuTrigger>

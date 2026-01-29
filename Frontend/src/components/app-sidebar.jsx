@@ -33,9 +33,9 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "FlowNest User",
+    email: "user@flownest.com",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=SidebarUser",
   },
   navMain: [
     {
