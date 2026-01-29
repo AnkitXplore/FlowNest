@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "FlowNest Task Management System",
   "scripts": {
+    "install": "cd Frontend && npm install",
+    "build": "cd Frontend && npm run build",
     "install-frontend": "cd Frontend && npm install",
     "install-backend": "cd Backend && npm install",
     "build-frontend": "cd Frontend && npm run build",

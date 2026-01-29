@@ -9,22 +9,10 @@ services:
     routes:
       - route: /.*
         directory: Frontend/dist
+        status: 200
     envVars:
       - key: NODE_VERSION
         value: 20
       - key: VITE_BASE_URL
         value: https://flownest-backend.onrender.com
-    autoDeploy: true
-    
-  # Backend Service (if needed)
-  - type: web
-    name: flownest-backend
-    env: node
-    buildCommand: cd Backend && npm install
-    startCommand: cd Backend && npm start
-    envVars:
-      - key: NODE_VERSION
-        value: 20
-      - key: PORT
-        value: 4000
     autoDeploy: true
